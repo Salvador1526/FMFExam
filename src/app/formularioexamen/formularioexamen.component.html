@@ -1,0 +1,88 @@
+<p>formularioexamen works!</p>
+<h2>Formulario FMF EXAMEN Salvador Ali</h2>
+
+<!--
+    Crearemos el formulario para llenar los datos solicitados
+    1.-Para crearlo en un formulario tipo ANGULAR
+    debemos declararlo con #{nombre}=ngForm, siguiente del evento submit que cargara
+    el metodo que se encontrara en nuestro metodo, el cual estara en nuestra clase de
+    nuestro componente
+-->
+
+<form #formContacto="ngForm" (ngSubmit)="onSubmit(formContacto)" novalidate>
+
+    <label for="nombre">Nombre</label><br/>   <!--Se llenara el nombre -->
+    <input type="text" name="nombre" 
+            #nombre="ngModel" [(ngModel)]="usuario.Nombre"
+            required pattern="[a-zA-Z]+"/>
+            <!-- Validacion de solo caracteres -->
+        <span *ngIf="nombre.touched && !nombre.valid">
+                Unicamente numeros
+        </span><br/>
+
+    <label for="apellido_paterno">Apellido Paterno</label><br/>  <!--Se llenara el Apellido Paterno -->
+    <input type="text" name="apellido_paterno" 
+            #apellido_paterno="ngModel" [(ngModel)]="usuario.Apellido_Paterno"
+            required pattern="[a-zA-Z]+"/>
+            <!-- Validacion de solo caracteres -->
+        <span *ngIf="apellido_paterno.touched && !apellido_paterno.valid">
+                Unicamente numeros
+        </span><br/>
+
+    <label for="apellido_materno">Apellido Materno</label><br/>  <!--Se llenara el Apellido Materno -->
+    <input type="text" name="apellido_materno" 
+            #apellido_materno="ngModel" [(ngModel)]="usuario.Apellido_Materno"
+            required pattern="[a-zA-Z]+"/>
+            <!-- Validacion de solo caracteres -->
+        <span *ngIf="apellido_materno.touched && !apellido_materno.valid">
+                Unicamente numeros
+        </span><br/>
+
+    <!--Validacion para la fecha de nacimiento-->
+
+    <label for="fecha_de_nacimiento">Fecha de Nacimiento</label><br/> <!--Se llenara la fecha de Nacimiento -->
+    <input type="date" name="fecha_de_nacimiento" 
+        #fecha_de_nacimiento="ngModel" [(ngModel)]="usuario.Fecha_de_Nacimiento"/><br/>
+
+
+
+    <label for="genero">Genero</label><br/>  <!--Se llenara el Genero -->
+    
+    <input type="checkbox" ng-model="vm.activo"
+         #cajagenero="ngModel" [(ngModel)]="usuario.Genero"
+        /> Femenino <br/>
+
+        <input type="checkbox" ng-model="vm.activo"
+        #cajagenero="ngModel" [(ngModel)]="usuario.Genero"
+        /> Masculino <br/>
+    
+                <input type="checkbox" ng-model="vm.activo"
+                #cajagenero="ngModel" [(ngModel)]="usuario.Genero"
+                /> Prefiero no decirlo <br/>
+    
+    
+    <label for="nacionalidad">Nacionalidad</label><br/>  <!--Se llenara la nacionalidad -->
+    <input type="text" name="nacionalidad" /><br/>
+
+    <!-- Vamos a declarar la condicional del RFC > a 18 años-->
+    <!--<span *ngIf="!fecha_de_nacimiento.valid"> -->
+    <label for="rfc">R.F.C</label><br/>  <!--Se llenara la ocupacion -->
+    <input type="text" name="rfc" /><br/>
+   
+
+    <label for="ocupacion">Ocupacion</label><br/>  <!--Se llenara la ocupacion -->
+    <input type="text" name="ocupacion" 
+            #ocupacion="ngModel" [(ngModel)]="usuario.Ocupacion"
+            equired pattern="[a-zA-Z]+"/>
+
+            <!-- Validacion de solo caracteres -->
+                    <span *ngIf="ocupacion.touched && !ocupacion.valid">
+                         Unicamente numeros
+                    </span> <br/>
+
+
+    <!-- Disable cuando no sea valido  -->
+    <input type="submit" name="Enviar" [disabled]="!formContacto.form.valid"/>
+</form>
+
+
